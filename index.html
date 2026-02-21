@@ -6,78 +6,100 @@
   <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {
-      font-size:20px;
-      font-family: Arial, sans-serif;
-      margin: 30px;
-      background: #f4f4f4;
-    }
-
-    /* Top bar */
-    .topbar {
-      margin-bottom: 25px;
-    }
-    .topbar button {
-      padding: 8px 16px;
-      margin-right: 10px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    /* Smaller charts */
-    .chart-small {
-      background: white;
-      border: 1px solid #ccc;
-      margin-bottom: 30px;
-    }
-
-    .section {
-      display: none;
-    }
-
-    .section.active {
-      display: block;
-    }
-
-    /* Updates styling */
-    .update {
-      background: white;
-      border: 1px solid #ccc;
-      padding: 15px;
-      margin-bottom: 25px;
-    }
-    .update img {
-      max-width: 400px;
-      max-height: 120px;
-      display: block;
-      margin-top: 10px;
-    }
-    .title {
-      font-size: 25px;
-      font-weight: bold;
-    }
-    .date {
-      color: gray;
-      margin-bottom: 10px;
+    :root {
+      --bg: #f4f4f4;
+      --card-bg: white;
+      --text: #000;
+      --border: #ccc;
+      --button-bg: #e0e0e0;
     }
     
-    /* Header with logos */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121212;
+        --card-bg: #1e1e1e;
+        --text: #ffffff;
+        --border: #333;
+        --button-bg: #2a2a2a;
+      }
+    }
+    
+    body {
+      font-size: 20px;
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: var(--bg);
+      color: var(--text);
+    }
+    
+    /* Header */
     .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 20px;
     }
+    
     .header img {
       height: 70px;
     }
+    
     .site-title {
       font-size: 32px;
       font-weight: bold;
       text-align: center;
       flex-grow: 1;
     }
-  </style>
+    
+    /* Top bar */
+    .topbar {
+      margin-bottom: 25px;
+    }
+    
+    .topbar button {
+      padding: 8px 16px;
+      margin-right: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      background: var(--button-bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    
+    /* Cards */
+    .chart-small,
+    .update {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      margin-bottom: 30px;
+      padding: 15px;
+    }
+    
+    .section {
+      display: none;
+    }
+    
+    .section.active {
+      display: block;
+    }
+    
+    .update img {
+      max-width: 400px;
+      max-height: 120px;
+      display: block;
+      margin-top: 10px;
+    }
+    
+    .title {
+      font-size: 25px;
+      font-weight: bold;
+    }
+    
+    .date {
+      color: gray;
+      margin-bottom: 10px;
+    }
+    </style>
 </head>
 <body>
 
@@ -136,6 +158,12 @@ async function loadCSV(file) {
   return text.trim().split("\n").map(r => r.split(","));
 }
 
+<script>
+const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const gridColor = isDarkMode ? "#444" : "#ddd";
+const tickColor = isDarkMode ? "#fff" : "#000";
+</script>
+  
 /* ---------- Approval Ratings ---------- */
 loadCSV("approval.csv").then(data => {
   const headers = data[0];
@@ -152,7 +180,21 @@ loadCSV("approval.csv").then(data => {
         fill: false
       }))
     },
-    options: { scales: { y: { min: 0, max: 100 } } }
+    options: {scales: {x: {
+      ticks: { color: tickColor },
+      grid: { color: gridColor }
+    },
+    y: {
+      ticks: { color: tickColor },
+      grid: { color: gridColor }
+    }
+    },
+    plugins: {
+      legend: {
+        labels: { color: tickColor }
+      }
+    }
+  }
   });
 });
 
