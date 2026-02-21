@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <title> DHAP 2026 - House of Commons Updates </title>
   <link rel="icon" type="image/x-icon" href="Images/favicon.ico">
+  <script>
+  const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const gridColor = isDarkMode ? "#444" : "#ddd";
+  const tickColor = isDarkMode ? "#fff" : "#000";
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
@@ -157,12 +162,6 @@ async function loadCSV(file) {
   const text = await response.text();
   return text.trim().split("\n").map(r => r.split(","));
 }
-
-<script>
-const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-const gridColor = isDarkMode ? "#444" : "#ddd";
-const tickColor = isDarkMode ? "#fff" : "#000";
-</script>
   
 /* ---------- Approval Ratings ---------- */
 loadCSV("approval.csv").then(data => {
