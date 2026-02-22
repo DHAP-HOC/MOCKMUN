@@ -141,11 +141,29 @@
   <h2>GDP per Capita</h2>
   <canvas id="gdpChart" class="chart-small"></canvas>
 
-  <h2>Total Fertility Rate (TFR)</h2>
-  <canvas id="tfrChart" class="chart-small"></canvas>
+  <h2>CPI Inflation</h2>
+  <canvas id="cpiChart" class="chart-small"></canvas>
 
-  <h2>Human Development Index (HDI)</h2>
+  <h2>Unemployment Rate</h2>
+  <canvas id="unemploymentChart" class="chart-small"></canvas>
+
+  <h2>Bank of England interest rate</h2>
+  <canvas id="interestChart" class="chart-small"></canvas>
+
+  <h2>GBP vs USD</h2>
+  <canvas id="gbpChart" class="chart-small"></canvas>
+
+  <h2>Total Fertility Rate</h2>
+  <canvas id="tftChart" class="chart-small"></canvas>
+
+  <h2>Human Development Index</h2>
   <canvas id="hdiChart" class="chart-small"></canvas>
+
+  <h2>PM2.5 Mean Pollution</h2>
+  <canvas id="pollutionChart" class="chart-small"></canvas>
+
+  <h2>Net Exports</h2>
+  <canvas id="exportsChart" class="chart-small"></canvas>
 </div>
 
 <script>
@@ -217,9 +235,15 @@ loadCSV("economy.csv").then(data => {
     });
   }
 
-  makeChart("gdpChart", "GDP per Capita", 1);
-  makeChart("tfrChart", "Total Fertility Rate", 2);
-  makeChart("hdiChart", "HDI", 3);
+  makeChart("gdpChart", "GDP per Capita (PPP)", 1);
+  makeChart("cpiChart", "CPI (Inflation) Index", 2);
+  makeChart("unemploymentChart", "Unemployment Rate", 3);
+  makeChart("interestChart", "Bank of England Interest Rate", 4);
+  makeChart("gbpChart", "GBP : USD", 5);
+  makeChart("tfrChart", "Total Fertility Rate", 6);
+  makeChart("hdiChart", "Human Development Index", 7);
+  makeChart("pollutionChart", "PM2.5 Pollution Index", 8);
+  makeChart("exportsChart", "Net Exports in GBP", 9);
 });
 
 /* ---------- Situation Updates ---------- */
