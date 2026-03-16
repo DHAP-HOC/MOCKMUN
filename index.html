@@ -164,6 +164,9 @@
 
   <h2>Net Exports</h2>
   <canvas id="exportsChart" class="chart-small"></canvas>
+
+  <h2>Net Immigration Rate</h2>
+  <canvas id="immigrationChart" class="chart-small"></canvas>
 </div>
 
 <script>
@@ -244,6 +247,7 @@ loadCSV("economy.csv").then(data => {
   makeChart("hdiChart", "Human Development Index", 7);
   makeChart("pollutionChart", "PM2.5 Pollution Index", 8);
   makeChart("exportsChart", "Net Exports in GBP", 9);
+  makeChart("immigrationChart", "Net Immigration to the UK", 10);
 });
 
 /* ---------- Situation Updates ---------- */
